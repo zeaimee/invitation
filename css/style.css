@@ -314,6 +314,18 @@ body {
   bottom: 26.66666667vw;
   text-align: center;
   color: #fff;
+  animation: fadeToContent 2s linear infinite;
+}
+@keyframes fadeToContent {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .pagebox {
   width: 100vw;
@@ -342,12 +354,76 @@ body {
   left: 0;
   top: 0;
 }
+/****************第一部分********************/
 .content1 {
   left: 0;
-  /****************第一部分********************/
+}
+.content1 .pagetwo-time {
+  width: 85.73333333vw;
+  height: 95.46666667vw;
+  position: absolute;
+  left: 7vw;
+  top: 18vw;
+}
+.content1 .pagetwo-qun {
+  width: 68.66666667vw;
+  height: 109.86666667vw;
+  position: absolute;
+  left: 26vw;
+  top: 9.33333333vw;
+}
+.content1 .pagetwo-hudie {
+  width: 75.2vw;
+  height: 60.4vw;
+  position: absolute;
+  left: 12.93333333vw;
+  top: 44vw;
+  transform: rotate(-30deg);
+}
+.content1 .pagetwo-text1 {
+  width: 65.6vw;
+  height: 39.46666667vw;
+  position: absolute;
+  left: 17.2vw;
+  top: 110.4vw;
+}
+.content1 .pagetwo-text2 {
+  width: 49.06666667vw;
+  height: 3.33333333vw;
+  position: absolute;
+  left: 25.46666667vw;
+  top: 146.53333333vw;
+}
+.content1 .pagetwo-logo {
+  width: 24.66666667vw;
+  height: 6.13333333vw;
+  position: absolute;
+  left: 37.66666667vw;
+  bottom: 10.66666667vw;
+}
+.content1 .pagetwo-text3 {
+  width: 85.73333333vw;
+  height: 95.46666667vw;
+  position: absolute;
+  left: 7vw;
+  top: 18vw;
 }
 .content2 {
   left: 100vw;
+}
+.content2 .pagethree-kuang {
+  width: 77.33333333vw;
+  height: 113.46666667vw;
+  position: absolute;
+  left: 11.33333333vw;
+  top: 25.86666667vw;
+}
+.content2 .pagethree-text {
+  width: 64.8vw;
+  height: 81.33333333vw;
+  position: absolute;
+  left: 17.6vw;
+  top: 40.93333333vw;
 }
 @keyframes slideMove {
   0% {
@@ -424,11 +500,111 @@ body {
 .content3 {
   left: 200vw;
 }
+.content3 .pagefour-title {
+  width: 49.6vw;
+  height: 13.33333333vw;
+  position: absolute;
+  left: 25.2vw;
+  top: 18vw;
+}
+.content3 .pagefour-kuang {
+  width: 70.93333333vw;
+  height: 109.2vw;
+  position: absolute;
+  left: 14.53333333vw;
+  top: 34.4vw;
+}
+.content3 .pagefour-text-box {
+  width: 37.33333333vw;
+  height: 96vw;
+  position: absolute;
+  left: 31.33333333vw;
+  top: 40vw;
+}
+.content3 .pagefour-text-box .pagefour-text {
+  width: 37.33333333vw;
+  height: 10.66666667vw;
+  line-height: 10.66666667vw;
+  position: relative;
+  border-bottom: 1px solid #607bad;
+  box-sizing: border-box;
+  text-align: center;
+}
+.content3 .pagefour-text-box .pagefour-text img {
+  width: 20vw;
+  height: 4.66666667vw;
+}
+.content3 .pagefour-text-box .pagefour-text:last-child {
+  border-bottom: 0;
+}
 .content4 {
   left: 300vw;
 }
+.content4 .pagefive-title {
+  width: 41.06666667vw;
+  height: 12.66666667vw;
+  position: absolute;
+  left: 29.46666667vw;
+  top: 18.26666667vw;
+}
+.content4 .pagefive-people {
+  width: 71.86666667vw;
+  height: 97.86666667vw;
+  position: absolute;
+  left: 14.06666667vw;
+  top: 40.26666667vw;
+}
+.content4 .pagesix-people1 {
+  width: 33.6vw;
+  height: 46.8vw;
+  position: absolute;
+  left: 13.6vw;
+  top: 40.26666667vw;
+}
+.content4 .pagesix-people2 {
+  width: 33.6vw;
+  height: 46.93333333vw;
+  position: absolute;
+  right: 13.6vw;
+  top: 40.26666667vw;
+}
+.content4 .pagesix-people3 {
+  width: 33.6vw;
+  height: 46.8vw;
+  position: absolute;
+  left: 13.6vw;
+  top: 90.66666667vw;
+}
+.content4 .pagesix-people4 {
+  width: 33.6vw;
+  height: 46.66666667vw;
+  position: absolute;
+  right: 13.6vw;
+  top: 90.66666667vw;
+}
 .content5 {
   left: 400vw;
+}
+.content5 .pageeight-title {
+  width: 49.33333333vw;
+  height: 12vw;
+  position: absolute;
+  right: 25.33333333vw;
+  top: 11.33333333vw;
+}
+.content5 .pageeight-text1 {
+  width: 75.46666667vw;
+  height: 29.46666667vw;
+  position: absolute;
+  right: 12.26666667vw;
+  top: 28.4vw;
+}
+.content5 .pageeight-text2 {
+  width: 77.33333333vw;
+  height: 96.26666667vw;
+  position: absolute;
+  right: 11.33333333vw;
+  top: 59.2vw;
 }
 .content6 {
   left: 500vw;

@@ -247,6 +247,18 @@ body {
     bottom: 200/7.5vw;
     text-align: center;
     color: #fff;
+    animation: fadeToContent 2s linear infinite;
+  }
+}
+@keyframes fadeToContent{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
   }
 }
 .pagebox{
@@ -271,15 +283,78 @@ body {
     top: 0;
   }
 }
-
+/****************第一部分********************/
 .content1{
   left: 0;
-  /****************第一部分********************/
+  .pagetwo-time{
+    width: 643/7.5vw;
+    height: 716/7.5vw;
+    position: absolute;
+    left: 52.5/7.5vw;
+    top: 135/7.5vw;
+  }
+  .pagetwo-qun{
+    width: 515/7.5vw;
+    height: 824/7.5vw;
+    position: absolute;
+    left: 195/7.5vw;
+    top: 70/7.5vw;
+  }
+  .pagetwo-hudie{
+    width: 564/7.5vw;
+    height: 453/7.5vw;
+    position: absolute;
+    left: 97/7.5vw;
+    top: 330/7.5vw;
+    transform: rotate(-30deg);
+  }
+  .pagetwo-text1{
+    width: 492/7.5vw;
+    height: 296/7.5vw;
+    position: absolute;
+    left: 129/7.5vw;
+    top: 828/7.5vw;
+  }
+  .pagetwo-text2{
+    width: 368/7.5vw;
+    height: 25/7.5vw;
+    position: absolute;
+    left: 191/7.5vw;
+    top: 1099/7.5vw;
+  }
+  .pagetwo-logo{
+    width: 185/7.5vw;
+    height: 46/7.5vw;
+    position: absolute;
+    left: 282.5/7.5vw;
+    bottom: 80/7.5vw;
+  }
+  .pagetwo-text3{
+    width: 643/7.5vw;
+    height: 716/7.5vw;
+    position: absolute;
+    left: 52.5/7.5vw;
+    top: 135/7.5vw;
+  }
   
 }
 //第二部分
 .content2{
   left: 100vw;
+  .pagethree-kuang{
+    width: 580/7.5vw;
+    height: 851/7.5vw;
+    position: absolute;
+    left: 85/7.5vw;
+    top: 194/7.5vw;
+  }
+  .pagethree-text{
+    width: 486/7.5vw;
+    height: 610/7.5vw;
+    position: absolute;
+    left: 132/7.5vw;
+    top: 307/7.5vw;
+  }
 }
 @keyframes slideMove {
   0%{
@@ -355,15 +430,117 @@ body {
 }
 .content3{
   left: 200vw;
+  .pagefour-title{
+    width: 372/7.5vw;
+    height: 100/7.5vw;
+    position: absolute;
+    left: 189/7.5vw;
+    top: 135/7.5vw;
+  }
+  .pagefour-kuang{
+    width: 532/7.5vw;
+    height: 819/7.5vw;
+    position: absolute;
+    left: 109/7.5vw;
+    top: 258/7.5vw;
+  }
+  .pagefour-text-box{
+    width: 280/7.5vw;
+    height: 720/7.5vw;
+    position: absolute;
+    left: 235/7.5vw;
+    top: 300/7.5vw;
+    .pagefour-text{
+      width: 280/7.5vw;
+      height: 80/7.5vw;
+      line-height: 80/7.5vw;
+      position: relative;
+      border-bottom: 1px solid #607bad;
+      box-sizing: border-box;
+      text-align: center;
+      img{
+        width: 150/7.5vw;
+        height: 35/7.5vw;
+      }
+      &:last-child{
+        border-bottom: 0;
+      }
+    }
+    
+  }
 }
 .content4{
   left: 300vw;
+  .pagefive-title{
+    width: 308/7.5vw;
+    height: 95/7.5vw;
+    position: absolute;
+    left: 221/7.5vw;
+    top: 137/7.5vw;
+  }
+  .pagefive-people{
+    width: 539/7.5vw;
+    height: 734/7.5vw;
+    position: absolute;
+    left: 105.5/7.5vw;
+    top: 302/7.5vw;
+  }
+  .pagesix-people1{
+    width: 252/7.5vw;
+    height: 351/7.5vw;
+    position: absolute;
+    left: 102/7.5vw;
+    top: 302/7.5vw;
+  }
+  .pagesix-people2{
+    width: 252/7.5vw;
+    height: 352/7.5vw;
+    position: absolute;
+    right: 102/7.5vw;
+    top: 302/7.5vw;
+  }
+  .pagesix-people3{
+    width: 252/7.5vw;
+    height: 351/7.5vw;
+    position: absolute;
+    left: 102/7.5vw;
+    top: 680/7.5vw;
+  }
+  .pagesix-people4{
+    width: 252/7.5vw;
+    height: 350/7.5vw;
+    position: absolute;
+    right: 102/7.5vw;
+    top: 680/7.5vw;
+  }
 }
 .content5{
   left: 400vw;
+  .pageeight-title{
+    width: 370/7.5vw;
+    height: 90/7.5vw;
+    position: absolute;
+    right: 190/7.5vw;
+    top: 85/7.5vw;
+  }
+  .pageeight-text1{
+    width: 566/7.5vw;
+    height: 221/7.5vw;
+    position: absolute;
+    right: 92/7.5vw;
+    top: 213/7.5vw;
+  }
+  .pageeight-text2{
+    width: 580/7.5vw;
+    height: 722/7.5vw;
+    position: absolute;
+    right: 85/7.5vw;
+    top: 444/7.5vw;
+  }
 }
 .content6{
   left: 500vw;
+  
 }
 
 
