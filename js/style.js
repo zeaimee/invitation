@@ -56,40 +56,30 @@
 	}
 })(window);
 		
-var musicArray = ['mCctv','mBanma','mBaojing','mKeke','mText','mTime','mWuniang',"mEnd","mDaohang"];
-function initMusic(musicIDArray){
-    if(musicIDArray.length>0){
-        for(var i=0;i<musicIDArray.length;i++){
-            var player =document.getElementById(musicIDArray[i]);
-             player.load();
-        }
-    }
-}
+
 function ImgLoadingByFile(imgArray,loadPageID,loadTxtID,showpageID,musicID){
 	function complete(long){
-		
 		var timer = setTimeout(function(){
 			$('#'+loadPageID).hide();
 			$('#'+showpageID).show();
-			initMusic(musicArray);
-			//新闻联播
-			mCctv.pause();
-			mCctv.play();
+			$('.btn-music').show();
+			musicStar.play();
 			clearTimeout(timer);
 		},long);
 	}
 	if(sessionStorage.getItem("pageloaded")){
-			var now = 60;
-			var timer02 = setInterval(function(){
-			    if(now>=0){
-			        $('#'+ loadTxtID +' span').html(''+now);
-			    }else{
-			        clearInterval(timer02);
-			    }
-			    now -=10;
-			    console.log(now);
-			},10);
-		complete(2500);
+			// var now = 60;
+			// var timer02 = setInterval(function(){
+			//     if(now>=0){
+			//         $('#'+ loadTxtID +' span').html(''+now);
+			//     }else{
+			//         clearInterval(timer02);
+			//     }
+			//     now -=10;
+			//     console.log(now);
+			// },10);
+		// complete(2500);
+		return 
 	}else{
 		var imgLoad = 0;
 		var btime = new Date();
@@ -103,19 +93,18 @@ function ImgLoadingByFile(imgArray,loadPageID,loadTxtID,showpageID,musicID){
 				img[i].onload = function(){
 					imgLoad++;
 					percent =60- parseInt(imgLoad/imgTotal*60);
-						$('#'+loadTxtID +' span').html(percent);
+						// $('#'+loadTxtID +' span').html(percent);
 						//console.log(percent);
 						
 					if(percent<=0){
 					    var etime = new Date();
 					    console.log(etime-btime);
-					    if(etime-1000>btime){
-					        complete(100);
-					    }else{
-					        complete(200);
-					    }
-					sessionStorage.setItem("pageloaded", "true");
-						
+					    // if(etime-1000>btime){
+					    //     complete(100);
+					    // }else{
+					    //     complete(200);
+					    // }
+						sessionStorage.setItem("pageloaded", "true");	
 					}
 				}
 			}
@@ -135,29 +124,42 @@ function landscape(){
 var firstInit = true,wrem = 0;
 //竖屏
 function portrait(){
-
 	var w = window.Utils.windowW();
 	var h = window.Utils.windowH();
 	// $("body").css({"width":'600vw',"height":'100vh',"overflow-x":'scroll',"-webkit-overflow-x":"scroll"});
 	$('#page-portrait').show();
 	$('#page-landscape').hide();
-	
+	$('.btn-music').click(function(){
+		if(musicStar.paused){
+			musicStar.play();
+			$('.open').show();
+			$('.clock').hide();
+		}else{
+			musicStar.pause();
+			$('.open').hide();
+			$('.clock').show();
+		}
+	});
+	$('#goContent').click(function(){
+		$('.pageone').hide()
+		$('.pagebox').show()
+		if(musicStar.paused){
+			musicStar.play();
+			$('.btn-music').show()
+			$('.open').show();
+			$('.clock').hide();
+		}
+	})	
 	//初始化加载
 	if(firstInit) {
+		musicStar.play();
 		wrem = window.remCalc.rem;
-		
-		
 		var imgFile = [
 			"img/loading02.gif",
 		];
 		ImgLoadingByFile(imgFile, 'loadingPage', 'loadTxt', 'pageOne',"musicStar");
 		//活动详情
-		ProvinceData.init('ddlProvince', 'ddlCity');
 		SaveInfo.init();
-		$('#goContent').click(function(){
-			$('.pageone').hide()
-			$('.pagebox').show()
-		})	
 		//内容
 		var time01 = true,
 		time02 = true,
@@ -254,15 +256,15 @@ function portrait(){
 			$(".p1-haode").show();
 			$(".p1-haode2").show();
 			$('.p1-music').show();
-			mBanma.play();
+		
 			time12 = false;
 		}
 		if(sh > (8406/ 75 * wrem) && time13) {
-			mTime.play();
+			
 			time13 = false;
 		}
 		if(sh > (1000/ 75 * wrem) && time14) { 
-	        mSahua.play();
+	        
 			time14 = false;
 		}
 		if(sh > (9150/ 75 * wrem) && time15) { 
@@ -291,7 +293,7 @@ function portrait(){
 		if (sh > (27720 / 75 * wrem)&&show04) {//part2 回家 路线
 			$('.p2-huijia').show();
 			$('.p2-luxian').show();
-			mDaohang.play();
+			
 			show04 = false;
 		}
 		if (sh > (26814 / 75 * wrem)&&show05) {//part2 搞事情
@@ -311,7 +313,7 @@ function portrait(){
 		}
 		if (sh > (22288 / 75 * wrem)&&show08) {//part2 17:59
 			$('.p2-red-kuang02').show();
-			mBaojing.play();
+			
 			show08 = false;
 		}
 		if (sh > (26088 / 75 * wrem)&&show09) {//part2 00:53
@@ -319,7 +321,7 @@ function portrait(){
 			show09 = false;
 		}
 		if (sh > (22960/ 75 * wrem)&&show10) {//part2 17:59	
-			mText.play();
+			
 			show10 = false;
 		}
         
@@ -350,17 +352,17 @@ function portrait(){
 			three06 = false;
 		}
 		if(sh > (31560 / 75 * wrem) && three07) { //冒泡的试管
-			mZhendong.play();
+		
 			three07 = false;
 		}
 		if(sh > (35678 / 75 * wrem) && three08) { //冒泡的试管
 			$(".p3-jump1").show();
 			$(".p3-jump2").show();
-			mWuniang.play();
+			
 			three08 = false;
 		}
 		if(sh > (38700 / 75 * wrem) && three09) { //冒泡的试管
-			mEnd.play();
+			m
 			three09 = false;
 		}
 	});
@@ -378,24 +380,50 @@ function portrait(){
 	
 }
 
-
+function drawImg (obj) {
+	var canvas = document.createElement('canvas')//画布
+	var ctx = canvas.getContext("2d");
+	canvas.width = 750;
+	canvas.height = 1450
+	ctx.clearRect(0,0,canvas.width,canvas.height);
+	ctx.fillStyle = '#000000';
+	ctx.fillRect(0,0,canvas.width, canvas.height);
+	var head = new Image()
+	head.crossOrigin = "*";
+	head.src = obj.head
+	head.onload = function() {
+		//画头像
+		ctx.drawImage(head, 0, 0, head.width, head.height, 37/750*canvas.width, 1203/1450*canvas.height, 100/750*canvas.width, 100/750*canvas.width);
+		var bg = new Image()
+		bg.crossOrigin = "*";
+		bg.src = obj.bg
+		bg.onload = function() {
+			 //画结果图
+			ctx.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, canvas.width, canvas.height);
+				//画用户昵称
+			ctx.font = '14px';
+			ctx.fillStyle = '#ffffff';
+			ctx.fillText(obj.username, 37/750*canvas.width, 1272/1450*canvas.height)
+			//img 数据，可传给后台数据库
+			var imgData = canvas.toDataURL()
+			$('.pagelast-saveimg').attr('src', imgData)
+			$('.content6-saveimg').show()
+			$('.content6-success').hide()	
+		}  
+	}   
+}
 
 
 var SaveInfo = {
-	username:null,//name
-	sex:"未知",//sex
-	phone:null,//mobile
-	cartype:'未选择',//car_type
-	buytime:'未选择',//buy_time
-	province:0,//province,dealer_name省份，城市，经销商（1,2,3）
-	city:0,//city,无
-	agency:0,//
-	source:'wz',//source,source,123
-	cartime:0,
-	more_name:null,
-	more_start:null,
-	chart:'user_rongwei',//必传状态码
-	draw_id:13,//默认为0
+	companyname:null,//公司名称
+	job:"未知", //参会人员职务
+	phone:null, //联系方式
+	turnover:0, //2018年营业额
+	puzzled:0, //puzzled
+	plan:0, //当下企业面临的困惑？
+	study:0, //曾经参加过哪些学些？
+	consult:0, //相关咨询
+	code: null, // 邀请码
 	init:function(){
 		function GetQueryString(name){
 			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -414,133 +442,163 @@ var SaveInfo = {
 		$('select').change(function(){
 			$(this).addClass('changed');
 		})
+		$('.pagenine-huodong').click(function() {
+			$('.active-detail').show()
+		})
+		$('.pagenine-close').click(function(){
+			$('.active-detail').fadeOut(300)
+		})
+		$('.pageten-save').click(function(){
+			var obj = {
+				bg: 'img/pagelast-saveimg.png',
+				head: 'img/pagenine-close.png', // 用户头像，微信获取
+				username: '用户昵称' // 微信获取
+			}
+			drawImg(obj)
+		})
 	},
 	inputReg:function(){
-		$('input[name="username"]').blur(function(){
+		$('input[name="companyname"]').blur(function(){
 			var val = $(this).val();
 			var reg =/^[a-zA-Z\u4E00-\u9FA5]*$/;
 			console.log(reg.test(val));
 			if(val!=""&&val!="test"&&val!="空白"&&val!="Unknown"&&val!="未知"&&val!="未告知"&&this.validity.valid&&reg.test(val)){
-				$(this).attr('placeholder','姓名');
+				$(this).removeClass('error')
+				$(this).attr('placeholder','公司名称*');
 			}else{
-				$(this).val('');
-				$(this).attr('placeholder','请您正确输入姓名');
+				$(this).attr('placeholder','请正确输入公司名称');
+				$(this).addClass('error')			
+			}
+		});
+		$('input[name="job"]').blur(function(){
+			var val = $(this).val();
+			var reg =/^[a-zA-Z\u4E00-\u9FA5]*$/;
+			console.log(reg.test(val));
+			if(val!=""&&val!="test"&&val!="空白"&&val!="Unknown"&&val!="未知"&&val!="未告知"&&this.validity.valid&&reg.test(val)){
+				$(this).removeClass('error')
+				$(this).attr('placeholder','参会人员职务*');
+			}else{
+				$(this).attr('placeholder','请正确输入参会人员职务');
+				$(this).addClass('error')			
 			}
 		});
 
 
 		$('input[name="phone"]').blur(function(){
-			var reg = /^1[34578]\d{9}$/;
+			var reg = /^1[345678]\d{9}$/;
 			var val = $(this).val();
 			if(isNaN(parseFloat(val))){
-				$(this).val('');
-				$(this).attr('placeholder','请您输入手机号');
+				// $(this).val('');
+				$(this).attr('placeholder','请您输入联系方式');
+				$(this).addClass('error')
 			}else{
 				if(reg.test(val)){
-					$(this).attr('placeholder','手机号');
-
+					$(this).attr('placeholder','联系方式*');
+					$(this).removeClass('error')
 				}else{
-					$(this).val('');
-					$(this).attr('placeholder','请您正确输入手机号');
+					// $(this).val('');
+					$(this).attr('placeholder','请您正确输入联系方式');
+					$(this).addClass('error')
 				}
 			}
-
 		});
 
 	},
 	clickReg:function(){
-		var usernameReg = false,phoneReg = false,provinceReg = false,cityReg = false;
-		var inputUsername = document.getElementById('username');
-		if(inputUsername.validity.valid){
-			usernameReg = true;
+		var companynameReg = false, jobReg = false, phoneReg = false;
+		var inputCompanyname = document.getElementById('companyname');
+		if(inputCompanyname.validity.valid){
+			companynameReg = true;
+			$(inputCompanyname).removeClass('error')
 		}else{
-			usernameReg = false;
+			companynameReg = false;
+			$(inputCompanyname).addClass('error')
 		}
-		var reg = /^1[34578]\d{9}$/;
+		var inputJob = document.getElementById('job');
+		if(inputJob.validity.valid){
+			jobReg = true;
+			$(inputJob).removeClass('error')
+		}else{
+			jobReg = false;
+			$(inputJob).addClass('error')
+		}
+		var reg = /^1[345678]\d{9}$/;
 		if(reg.test($('input[name="phone"]').val())){
 			phoneReg = true;
+			$('input[name="phone"]').removeClass('error')
 		}else{
 			phoneReg = false;
+			$('input[name="phone"]').addClass('error')
 		}
-		function selectReg(selectName){
-			var val = $('select[name='+selectName+'] option:selected').val();
-			var reg;
-			if(val&&val!=0){
-				reg = true;
-			}else{
-				reg = false;
-			}
-			return reg;
-
-		}
-		provinceReg = selectReg('ddlProvince');
-		cityReg = selectReg('ddlCity');
-
-		var total = usernameReg&&phoneReg&&provinceReg&&cityReg;
-		console.log(usernameReg,phoneReg,provinceReg,cityReg);
+		var total = companynameReg&&phoneReg&&jobReg;
+		console.log(companynameReg&&phoneReg&&jobReg);
 		console.log(total);
 		return total;
 		//return true;
 	},
 	submit:function(){
 		$('#btn-userInfo').on('click',function(e){
+			$('.content6-success').show();
+			$('.content6').hide()
 			e.preventDefault();
 			$(".alert").click(function(){
 				$(".alertBox").fadeOut(300);
 				$('.btn-userInfo').addClass('btn-move');
 			});
 			if(SaveInfo.clickReg()){
+				$('.content6-success').show()
+				$('.content6').hide()
+				//  ajax 提交=====================
+				// SaveInfo.username = $('input[name="username"]').val();
+				// SaveInfo.phone = $('input[name="phone"]').val();
+				// SaveInfo.province = $('select[name="ddlProvince"] option:selected').val();
+				// SaveInfo.city = $('select[name="ddlCity"] option:selected').val();
+				// //SaveInfo.agency = $('select[name="agency"] option:selected').val();
+				// // 发起Ajax调用
+				// var xyData = {
+				// 	name:SaveInfo.username,
+				// 	mobile:SaveInfo.phone,
+				// 	sex:SaveInfo.sex,
+				// 	dealer_name:SaveInfo.province+','+SaveInfo.city+','+SaveInfo.agency,
+				// 	car_type:SaveInfo.cartype,
+				// 	buy_time:SaveInfo.buytime,
+				// 	chart:SaveInfo.chart,
+				// 	source:SaveInfo.source
+				// };
+				// //console.log(xyData);
+				// $.ajax({
+				// 	type:'post',
+				// 	url:'https://h5api.xingyuanauto.com/userinfo',
+				// 	data:xyData,
+				// 	dataType:'json',
+				// 	success:function(msg){
 
-				SaveInfo.username = $('input[name="username"]').val();
-				SaveInfo.phone = $('input[name="phone"]').val();
-				SaveInfo.province = $('select[name="ddlProvince"] option:selected').val();
-				SaveInfo.city = $('select[name="ddlCity"] option:selected').val();
-				//SaveInfo.agency = $('select[name="agency"] option:selected').val();
-				// 发起Ajax调用
-				var xyData = {
-					name:SaveInfo.username,
-					mobile:SaveInfo.phone,
-					sex:SaveInfo.sex,
-					dealer_name:SaveInfo.province+','+SaveInfo.city+','+SaveInfo.agency,
-					car_type:SaveInfo.cartype,
-					buy_time:SaveInfo.buytime,
-					chart:SaveInfo.chart,
-					source:SaveInfo.source
-				};
-				//console.log(xyData);
-				$.ajax({
-					type:'post',
-					url:'https://h5api.xingyuanauto.com/userinfo',
-					data:xyData,
-					dataType:'json',
-					success:function(msg){
-
-						//console.log(msg);
-						if(msg.code==1001){
-							$('.success').show();
-							$('.btn-userInfo').removeClass('btn-move');
-							$('select option[value="0"]').attr('disabled',false);
-							$('#userForm')[0].reset();
-							$('select').removeClass('changed');
-						}else if(msg.code==1003){//已注册
-							$(".repace").show();
-							$('.btn-userInfo').removeClass('btn-move');
-						}else if(msg.code==1005){//重复提交
-							$(".repaceagain").show();
-							$('select option[value="0"]').attr('disabled',false);
-							$('.btn-userInfo').removeClass('btn-move');
-							$('#userForm')[0].reset();
-						}else{
-							$(".error").show();
-						}
-					},
-					error:function(msg){
-						$(".error").show();
-					}
-				});
+				// 		//console.log(msg);
+				// 		if(msg.code==1001){
+				// 			$('.success').show();
+				// 			$('.btn-userInfo').removeClass('btn-move');
+				// 			$('select option[value="0"]').attr('disabled',false);
+				// 			$('#userForm')[0].reset();
+				// 			$('select').removeClass('changed');
+				// 		}else if(msg.code==1003){//已注册
+				// 			$(".repace").show();
+				// 			$('.btn-userInfo').removeClass('btn-move');
+				// 		}else if(msg.code==1005){//重复提交
+				// 			$(".repaceagain").show();
+				// 			$('select option[value="0"]').attr('disabled',false);
+				// 			$('.btn-userInfo').removeClass('btn-move');
+				// 			$('#userForm')[0].reset();
+				// 		}else{
+				// 			$(".error").show();
+				// 		}
+				// 	},
+				// 	error:function(msg){
+				// 		$(".error").show();
+				// 	}
+				// });
 			}else{
-				$(".error").show();
-				//alert('请完善信息');
+				// $(".error").show();
+				alert('请完善信息');
 			}
 
 		});

@@ -57,7 +57,7 @@
 					<img class="pagetwo-hudie" src="img/pagetwo-hudie.gif" alt="">
 					<img class="pagetwo-text1" src="img/pagetwo-text1.png" alt="">
 					<img class="pagetwo-text2" src="img/pagetwo-text2.png" alt="">
-					<img class="pagetwo-text3" src="img/pagetwo-text3.png" alt="">
+					<!-- <img class="pagetwo-text3" src="img/pagetwo-text3.png" alt=""> -->
 					<img class="pagetwo-logo" src="img/logo.png" alt="">
 				</div>
 				<!--内容2-->
@@ -122,53 +122,107 @@
 				</div>
 				<!--内容6-->
 				<div class="content6">
+					<img class="pagenine-title" src="img/pagenine-title.png" alt="">
+					<img class="pagenine-onformbg" src="img/pagenine-informbg.png" alt="">
 					<!--注册页-->
 					<div class="userEnd" id="userEnd">	
 					    <div  class="userInfo-box" >
 							<form id="userForm" >
 					        <ul class="input-form">
 								<li>
-									<span >姓名</span>
-									<input   type="text" id="username" name="username" placeholder="姓名"  maxlength=10 minlength=2 required="required" />
+									<input type="text" id="companyname" name="companyname" placeholder="公司名称*"  maxlength=50 minlength=2 required="required" />
 								</li>
 								<li>
-									<span >手机</span>
-									<input type="tel" id="phone" name="phone" placeholder="手机" maxlength=11  required="required" />
+									<input type="text" id="job" name="job" placeholder="参会人员职务*"  maxlength=50 minlength=2 required="required" />
 								</li>
-
-								<li class="province-city">
-									<select id="ddlProvince" name="ddlProvince" class="ddlProvince" title="省/00" >
-										<option value="0">选择省份</option>
+								<li>
+									<input type="tel" id="phone" name="phone" placeholder="联系方式*" maxlength=11  required="required" />
+								</li>
+								<li>
+									<select name="turnover" id="turnover" >
+										<option value="0">2018年营业额</option>
+										<option value="A">A, 500≤Y&lt;20000</option>
+										<option value="B">B, 50≤Y&lt;500</option>
+										<option value="C">C, Y&lt;50</option>
+										<option value="D">D, 其他</option>
 									</select>
-									<em class="select-icon select-province"></em>
-									<select id="ddlCity" name="ddlCity" class="ddlCity">
-										<option value="0">选择城市</option>
+								</li>
+								<li>
+									<select name="puzzled" id="puzzled" >
+										<option value="0">当下企业面临的困惑？</option>
+										<option value="A">A, 经营理念和管理方式问题</option>
+										<option value="B">B, 企业架构调整</option>
+										<option value="C">C, 企业融资问题</option>
+										<option value="D">D, 技术人才和管理人才缺失问</option>
+										<option value="E">E, 其他</option>
 									</select>
-									<em class="select-icon"></em>
+								</li>
+								<li>
+									<select name="plan" id="plan" >
+										<option value="0">未来3-5年的发展规划？</option>
+										<option value="A">A, 创新公司管理理念</option>
+										<option value="B">B, 加强人才队伍建设，环节和消除公司发展的“瓶颈”</option>
+										<option value="C">C, 垂直行业继续发展</option>
+										<option value="D">D, 产业转型</option>
+										<option value="E">E, 其他</option>
+									</select>
+								</li>
+								<li>
+									<select name="study" id="study" >
+										<option value="0">曾经参加过哪些学些？</option>
+										<option value="A">A, 参加过创享智库颠覆等相关培训</option>
+										<option value="B">B, 参加过其他机构的相关培训</option>
+										<option value="C">C, 什么都没有参加</option>
+										<option value="D">D, 其他</option>
+									</select>
+								</li>
+								<li>
+									<select name="consult" id="consult" >
+										<option value="0">相关咨询</option>
+									</select>
+								</li>
+								<li>
+									<input type="text" id="code" name="code" placeholder="邀请码"  maxlength=50 minlength=2  />
 								</li>
 					        </ul>
 							</form>
-					    </div>
-						<div id="btn-userInfo"  class="btn-userInfo btn-move">确认提交</div>
+							<img class="pagenine-tishi" src="img/pagenine-tishi.png" alt="">
+							<img class="pagenine-huodong" src="img/pagenine-huodong.png" alt="">
+							<div id="btn-userInfo"  class="btn-userInfo btn-move"></div>
+						</div>
 					</div>
-	
+					<div class="active-detail">
+						<div class="pagenine-long-box">
+							<img class="pagenine-long" src="img/pagenine-long.png" alt="">
+						</div>
+						<img class="pagenine-jiantou" src="img/pagenine-jiantou.png" alt="">
+						<img class="pagenine-close" src="img/pagenine-close.png" alt="">
+					</div>
 					<!--弹框-->
 					<div class="error alertBox ">
-						<!-- <img src="img/error.png" class="alert"/> -->
+						<img src="img/error.png" class="alert"/>
 					</div>
 					<!--成功-->
-					<div class="success alertBox ">
-						<!-- <img src="img/success.png" class="alert"/> -->
+					<div class="success-box">
+						
 					</div>
 
 					<div class="repace alertBox">
-						<!-- <img src="img/repace.png" class="alert" alt=""/> -->
+						<img src="img/repace.png" class="alert" alt=""/>
 					</div>
 					<div class="repaceagain alertBox">
 						<img src="img/plase.png" class="alert" alt=""/>
 					</div>
 				</div>
-									
+				<div class="content6-success">
+					<img class="pageten-title" src="img/pageten-title.png" alt="">
+					<img class="pageten-save" src="img/pageten-save.png" alt="">
+					<img class="pageten-share" src="img/pageten-share.png" alt="">
+				</div>	
+				<div class="content6-saveimg">
+					<img class="pagelast-title" src="img/pagelast-title.png" alt="">
+					<img class="pagelast-saveimg" src="img/pagelast-saveimg.png" alt="">
+				</div>			
 				<!--pc端打开提示二维码-->
 				<div class="viewPC">
 					<div class="ewmBox">
@@ -178,19 +232,8 @@
 				</div>
 			</div>
 		</div>
-		
 		<!--音乐-->
-		<audio src="video/use/cctv.mp3" id="mCctv"  preload="auto"  ></audio>
-		<audio src="video/use/banmabanma.mp3" id="mBanma"  preload="auto"  ></audio>
-		<audio src="video/use/bao110.mp3" id="mBaojing"  preload="auto"  ></audio>
-		<audio src="video/use/keke.mp3" id="mKeke"  preload="auto"  ></audio>
-		<audio src="video/use/text.mp3" id="mText"  preload="auto"  ></audio>
-		<audio src="video/use/time.mp3" id="mTime"  preload="auto"  ></audio>
-		<audio src="video/use/wuniang02.mp3" id="mWuniang"  preload="auto"  ></audio>
-		<audio src="video/use/zhendong.mp3" id="mZhendong"  preload="auto"  ></audio>
-		<audio src="video/use/daohang.mp3" id="mDaohang"  preload="auto"  ></audio>
-		<audio src="video/use/end.mp3" id="mEnd"  preload="auto"  ></audio>
-		<audio src="video/use/sahua.mp3" id="mSahua"  preload="auto"  ></audio>
+		<audio src="video/bg.mp3" id="musicStar"  preload="auto"  loop="loop" ></audio>
 		<div class="btn-music">
 			<img src="img/music-open.png" class="open music" style="display: block;"/>
 			<img src="img/music-close.png" class="clock music" style="display: none;"/>
@@ -207,80 +250,21 @@
 		}
 	</script>
 	<script type="text/javascript">
-			var mCctv = document.getElementById('mCctv');
-			var mBanma = document.getElementById('mBanma');
-			var mBaojing = document.getElementById('mBaojing');
-			var mKeke = document.getElementById('mKeke');
-			var mText = document.getElementById('mText');
-			var mTime = document.getElementById('mTime');
-			var mWuniang = document.getElementById('mWuniang');
-			var mZhendong = document.getElementById('mZhendong');
-			var mDaohang = document.getElementById('mDaohang');
-			var mEnd = document.getElementById('mEnd');
-			var mSahua = document.getElementById('mSahua');
-//			var firstPlay = true;
-			function audioAutoPlay(){
+		var musicStar = document.getElementById('musicStar');
+		function audioAutoPlay(id){
+			var audio = document.getElementById(id);
+			var play = function(){
+				audio.play();
 
-				var play = function(){
-//				   	 if(firstPlay && !mCctv.paused){
-//				   	 	 mCctv.play();
-//				   	 	  firstPlay = false;
-//				   	 }
-				     mCctv.play();
-//				       mCctv.pause();
-				      mBanma.play();
-				      mBanma.pause();
-				      mBaojing.play();
-				      mBaojing.pause();
-				       mKeke.play();
-				      mKeke.pause();
-				      mText.play();
-				     mText.pause();
-				     mTime.play();
-				     mTime.pause();
-				     mWuniang.play();
-				     mWuniang.pause();
-				    mZhendong.play();
-				    mZhendong.pause();
-				     mDaohang.play();
-				     mDaohang.pause();
-				      mEnd.play();
-				       mEnd.pause();
-				       mSahua.play();
-				       mSahua.pause();
-				     
-				      document.removeEventListener("touchstart",play, false);
-				   };
-				   //新闻联播出现的时候就播放
-				  		mCctv.play();
-				       mCctv.pause();
-				      mBanma.play();
-				      mBanma.pause();
-				      mBaojing.play();
-				      mBaojing.pause();
-				       mKeke.play();
-				      mKeke.pause();
-				      mText.play();
-				     mText.pause();
-				     mTime.play();
-				     mTime.pause();
-				     mWuniang.play();
-				     mWuniang.pause();
-				    mZhendong.play();
-				    mZhendong.pause();
-				    mDaohang.play();
-				    mDaohang.pause();
-				     mEnd.play();
-				      mEnd.pause();
-				       mSahua.play();
-				       mSahua.pause();
-				      
-				   document.addEventListener("touchstart",play, false);
-			}
+				document.removeEventListener("touchstart",play, false);
+			};
+				
+			audio.play();
+			audio.pause();
+			document.addEventListener("touchstart",play, false);
+		}
 	</script>
-    <script src="js/roewe_dealer.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="https://h5php.xingyuanauto.com/weixin_serve/jssdk/js/wx_share.js"></script>
-	<script src="js/province.js"></script>
     <script src="js/style.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 		$(function(){
@@ -290,7 +274,6 @@
 			    desc:'下班不快点走准没好事',//分享描述
 			    img:'img/share.jpg',//分享图片
 			});
-    	
 		})
 
 	</script>
