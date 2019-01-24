@@ -84,6 +84,9 @@ body {
   //overflow: hidden;
   //-webkit-overflow:hidden;
 }
+body.fixed{
+  overflow: hidden!important;
+}
 /**音乐符号**/
 .btn-music{width: 70/7.5vw; height: 70/7.5vw; position: fixed; top:4/7.5vw; right: 0/7.5vw;z-index: 800;display:none}
 .music{width:100%; height: 100%;}
@@ -132,13 +135,29 @@ body {
 }
 //竖屏
 .page-portrait{
-  width:100%;
+  width:100vw;
   width: auto;
   height:100vh;
   position:relative;
-  overflow: scroll;
-  // overflow-y: hidden;
-  // -webkit-overflow-y:hidden;
+  overflow-y: hidden;
+  -webkit-overflow-y:hidden;
+  overflow-x: auto;
+  -webkit-overflow-x:auto;
+  -webkit-overflow-scrolling: touch;
+  // &.fixed{
+  //   overflow-x: hidden;
+  //   -webkit-overflow-x:hidden;
+  //   overflow-y: scroll;
+  //   -webkit-overflow-y:scroll;
+  //   // position: fixed;
+  // }
+  // &.scroll{
+  //   overflow-y: hidden;
+  //   -webkit-overflow-y:hidden;
+  //   overflow-x: scroll;
+  //   -webkit-overflow-x:scroll;
+  //   -webkit-overflow-scrolling: touch;
+  // }
 }
 //loading设置
 .load-page{
@@ -148,8 +167,10 @@ body {
   left:0;
   top:0;
   z-index: 2;
-  background: #fff;
-  display: none;
+  color: #fff;
+  // display: none;
+  background:url(../img/pageonebg.jpg);
+  background-size: 100% 100%;
   //loading动画展示区域
   .img-load-now{
     width:100%;
@@ -168,7 +189,7 @@ body {
     p{
       width:100%;
       text-align: center;
-      color:#000;
+      color:#fff;
       font-size:34/7.5vw;
     }
   }
@@ -211,7 +232,7 @@ body {
 
 /*******************************荣威页面内容****************/
 .page-one{
-  // display: none;
+  display: none;
   position: absolute;
   left: 0;
   top: 0;
@@ -232,6 +253,8 @@ body {
     position: absolute;
     left: 195/7.5vw;
     top: 287.5/7.5vw;
+    opacity: 0;
+    animation: fadeIn 1s 0.1s linear forwards;
   }
   .zhang02{
     width: 207/7.5vw;
@@ -239,6 +262,8 @@ body {
     position: absolute;
     left: 187.5/7.5vw;
     top: 790/7.5vw;
+    opacity: 0;
+    animation: fadeIn 1s 0.15s linear forwards;
   }
   .goContent{
     width: 400/7.5vw;
@@ -263,18 +288,18 @@ body {
   }
 }
 .pagebox{
-  width: 100vw;
+  width:4500/7.5vw;
   height:100vh;
   display: none;
   position: relative;
-  overflow-x: scroll;
-  overflow-y: hidden; 
+  overflow: hidden;
   background: #333;
   .content1, .content2, .content3, .content4, .content5, .content6{
     width: 100vw;
     height: 100vh;
     position: absolute;
     top: 0;
+    display: none;
   }
   .bg{
     width:4500/7.5vw;
@@ -282,6 +307,99 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+  }
+  .ball_09{
+    width: 708/7.5vw;
+    height: 432/7.5vw;
+    position: absolute;
+    left: 1140/7.5vw;
+    top: 564/7.5vw;
+  }
+  .ball_06{
+    width: 178/7.5vw;
+    height: 178/7.5vw;
+    position: absolute;
+    left: 2156/7.5vw;
+    top: 435/7.5vw;
+  }
+  .ball_03{
+    width: 1025/7.5vw;
+    height: 1025/7.5vw;
+    position: absolute;
+    left: 2664/7.5vw;;
+    top: 1043/7.5vw;
+  }
+  .ball_17{
+    width: 62/7.5vw;
+    height: 62/7.5vw;
+    position: absolute;
+    left: 3696/7.5vw;
+    top: 894/7.5vw;
+  }
+  .ball_08{
+    width: 225/7.5vw;
+    height: 235/7.5vw;
+    position: absolute;
+    left: 4066/7.5vw;;
+    top: 105/7.5vw;
+  }
+  .ball_12{
+    width: 134/7.5vw;
+    height: 146/7.5vw;
+    position: absolute;
+    left: 4400/7.5vw;
+    top: 583/7.5vw;
+  }
+  .move-tip{ 
+    width: 200/7.5vw;
+    height: 60/7.5vw;
+    position: fixed;
+    right: 0;
+    top: 45%;
+    padding-top: 100/75vw;
+    opacity: 0;
+    animation: movetipshow 0.3s 1s linear forwards;
+    img{
+      width: 48/7.5vw;
+      height: 65/7.5vw;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, 0);
+      animation: jiantoumove 2s linear infinite;
+    }
+    @keyframes jiantoumove {
+      0%{
+        left: 0vw;
+        opacity: 1;
+      }
+      60%{
+        left: -30/7.5vw;
+        opacity: 1;
+      }
+      80%{
+        left: -30/7.5vw;
+        opacity: 0;
+      }
+      100%{
+        left: 0vw;
+        opacity: 0;
+      }
+    }
+    div{
+      color: #ffffff;
+      font-size: 12px;
+      text-align: center;
+      width: 100px;
+    }
+  }
+  @keyframes movetipshow {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
   }
 }
 /****************第一部分********************/
@@ -485,6 +603,8 @@ body {
     position: absolute;
     left: 105.5/7.5vw;
     top: 302/7.5vw;
+    opacity: 0;
+    animation: zoomIn 0.5s 0.3s forwards;
   }
   .pagesix-people1{
     width: 252/7.5vw;
@@ -492,6 +612,8 @@ body {
     position: absolute;
     left: 102/7.5vw;
     top: 302/7.5vw;
+    opacity: 0;
+    animation: fadeInLeft 0.8s 3s forwards;
   }
   .pagesix-people2{
     width: 252/7.5vw;
@@ -499,6 +621,8 @@ body {
     position: absolute;
     right: 102/7.5vw;
     top: 302/7.5vw;
+    opacity: 0;
+    animation: fadeInRight 0.8s 3s forwards;
   }
   .pagesix-people3{
     width: 252/7.5vw;
@@ -506,6 +630,8 @@ body {
     position: absolute;
     left: 102/7.5vw;
     top: 680/7.5vw;
+    opacity: 0;
+    animation: fadeInLeft 0.8s 3s forwards;
   }
   .pagesix-people4{
     width: 252/7.5vw;
@@ -513,6 +639,8 @@ body {
     position: absolute;
     right: 102/7.5vw;
     top: 680/7.5vw;
+    opacity: 0;
+    animation: fadeInRight 0.8s 3s forwards;
   }
 }
 .content5{
@@ -523,6 +651,8 @@ body {
     position: absolute;
     right: 190/7.5vw;
     top: 85/7.5vw;
+    transform: translate3d(0, 100%, 0);
+    animation: slideInUp 0.5s 0s forwards;
   }
   .pageeight-text1{
     width: 566/7.5vw;
@@ -530,6 +660,8 @@ body {
     position: absolute;
     right: 92/7.5vw;
     top: 213/7.5vw;
+    transform: translate3d(0, 100%, 0);
+    animation: slideInUp 0.5s 0.1s forwards;
   }
   .pageeight-text2{
     width: 580/7.5vw;
@@ -537,6 +669,8 @@ body {
     position: absolute;
     right: 10.3vw;
     top: 444/7.5vw;
+    transform: translate3d(0, 100%, 0);
+    animation: slideInUp 0.5s 0.15s forwards;
   }
 }
 .content6{
@@ -547,6 +681,8 @@ body {
     position: absolute;
     left: 192.5/7.5vw;
     top: 88/7.5vw;
+    opacity: 0;
+    animation: fadeInDown 0.8s forwards;
   }
   .pagenine-onformbg{
     width: 574/7.5vw;
@@ -554,13 +690,15 @@ body {
     position: absolute;
     left: 88/7.5vw;
     top: 209/7.5vw;
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
   }
   .pagenine-tishi{
     width: 180/7.5vw;
     height: 40/7.5vw;
     position: absolute;
     left: 0;
-    top: 95vw;
+    top: 95vw; 
   }
   .pagenine-huodong{
     width: 153/7.5vw;
@@ -569,13 +707,18 @@ body {
     right: 0;
     top: 715/7.5vw;
   }
-  .active-detail{
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    display: none;
+  
+}
+.content6-detail{
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url(../img/last-bg.png);
+  background-size: 100% 100%;
+  display: none;
     .pagenine-close{
       width: 49/7.5vw;
       height: 48/7.5vw;
@@ -604,12 +747,74 @@ body {
       height: 89/7.5vw;
       position: absolute;
       left: 361/7.5vw;
-      top: 1019/7.5vw;
+      top: 950/7.5vw;
+      animation: fadeInUp 2s infinite;
     }
-  }
 }
 
-
+.content6-success{
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url(../img/last-bg.png);
+  background-size: 100% 100%;
+  .pageten-title{
+    width: 403/60rem;
+    height: 108/60rem;
+    position: absolute;
+    left: 50%;
+    top: 426/7.5vw;
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+  }
+  .pageten-save{
+    width: 120/60rem;
+    height: 135/60rem;
+    position: absolute;
+    top: 577/7.5vw;
+    left: 184/7.5vw;
+  }
+  .pageten-share{
+    width: 172/60rem;
+    height: 127/60rem;
+    position: absolute;
+    top: 577/7.5vw;
+    right: 184/7.5vw;
+  }
+}
+.content6-saveimg{
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url(../img/last-bg.png);
+  background-size: 100% 100%;
+  .pagelast-title{
+    width: 365/60rem;
+    height: 92/60rem;
+    position: absolute;
+    left: 50%;
+    top: 128/7.5vw;
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+  }
+  .pagelast-saveimg{
+    width: 433/7.5vw;
+    height: auto;
+    position: absolute;
+    top: 261/7.5vw;
+    left: 50%;
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+    border-radius: 3px;
+    box-shadow: 5px 2px 6px rgba(1,1,1,0.6);
+  }
+}
 
 
 /***********************表单**********************/
@@ -634,6 +839,8 @@ input{
     position:absolute;
     top: 209/7.5vw;
     left:0; 
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
   }
 .userInfo-box{
   box-sizing:border-box;
@@ -802,65 +1009,7 @@ input{
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
 }
-.content6-success{
-  display: none;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  .pageten-title{
-    width: 403/60rem;
-    height: 108/60rem;
-    position: absolute;
-    left: 50%;
-    top: 426/7.5vw;
-    -webkit-transform: translate(-50%,0);
-    transform: translate(-50%,0);
-  }
-  .pageten-save{
-    width: 120/60rem;
-    height: 135/60rem;
-    position: absolute;
-    top: 577/7.5vw;
-    left: 184/7.5vw;
-  }
-  .pageten-share{
-    width: 172/60rem;
-    height: 127/60rem;
-    position: absolute;
-    top: 577/7.5vw;
-    right: 184/7.5vw;
-  }
-}
-.content6-saveimg{
-  display: none;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  .pagelast-title{
-    width: 365/60rem;
-    height: 92/60rem;
-    position: absolute;
-    left: 50%;
-    top: 128/7.5vw;
-    -webkit-transform: translate(-50%,0);
-    transform: translate(-50%,0);
-  }
-  .pagelast-saveimg{
-    width: 433/7.5vw;
-    height: auto;
-    position: absolute;
-    top: 261/7.5vw;
-    left: 50%;
-    -webkit-transform: translate(-50%,0);
-    transform: translate(-50%,0);
-    border-radius: 3px;
-    box-shadow: 5px 2px 6px rgba(1,1,1,0.6);
-  }
-}
+
 .btn-userInfo{
   opacity: 1;
 }

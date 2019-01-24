@@ -65,20 +65,24 @@ function ImgLoadingByFile(imgArray,loadPageID,loadTxtID,showpageID,musicID){
 			$('.btn-music').show();
 			musicStar.play();
 			clearTimeout(timer);
+			timer = null
 		},long);
 	}
 	if(sessionStorage.getItem("pageloaded")){
-			// var now = 60;
-			// var timer02 = setInterval(function(){
-			//     if(now>=0){
-			//         $('#'+ loadTxtID +' span').html(''+now);
-			//     }else{
-			//         clearInterval(timer02);
-			//     }
-			//     now -=10;
-			//     console.log(now);
-			// },10);
-		// complete(2500);
+			var now = 0;
+			console.log(now);
+			var timer02 = setInterval(function(){
+			    if(now<=100){
+			        $('#'+ loadTxtID +' span').html(now + '%');
+			    }else{
+							clearInterval(timer02);
+							timer02=null
+							return
+			    }
+			    now +=8
+			    console.log(now);
+			},10);
+		complete(2500);
 		return 
 	}else{
 		var imgLoad = 0;
@@ -92,18 +96,18 @@ function ImgLoadingByFile(imgArray,loadPageID,loadTxtID,showpageID,musicID){
 				img[i].src=imgArray[i];
 				img[i].onload = function(){
 					imgLoad++;
-					percent =60- parseInt(imgLoad/imgTotal*60);
-						// $('#'+loadTxtID +' span').html(percent);
+					percent = parseInt(imgLoad/imgTotal*100);
+						$('#'+loadTxtID +' span').html(percent + '%');
 						//console.log(percent);
 						
-					if(percent<=0){
+					if(percent>=100){
 					    var etime = new Date();
 					    console.log(etime-btime);
-					    // if(etime-1000>btime){
-					    //     complete(100);
-					    // }else{
-					    //     complete(200);
-					    // }
+					    if(etime-1000>btime){
+					        complete(100);
+					    }else{
+					        complete(200);
+					    }
 						sessionStorage.setItem("pageloaded", "true");	
 					}
 				}
@@ -143,6 +147,7 @@ function portrait(){
 	$('#goContent').click(function(){
 		$('.pageone').hide()
 		$('.pagebox').show()
+		$('.content1').show()
 		if(musicStar.paused){
 			musicStar.play();
 			$('.btn-music').show()
@@ -176,59 +181,41 @@ function portrait(){
 		time13= true,
 		time14= true,
 		time15 =true;
-	//part2
-	var show01 = true,
-		show02 = true,
-		show03 = true,
-		show04 = true,
-		show05 = true,
-		show06 = true,
-		show07 = true,
-		show08 = true,
-		show09 = true,
-		show10 = true;
-	//part3
-	var three01 = true,
-		three02 = true,
-		three03 = true,
-		three04 = true,
-		three05 = true,
-		three06 = true,
-		three07 = true,
-		three08 = true,
-		three09 = true;
 
-	$('#pageContainer').on('scroll',function() {
+	$('#page-portrait').on('scroll',function() {
 		/* ...do something... */
-		var sh = $('#pageContainer').scrollLeft();
+		var sh = $('#page-portrait').scrollLeft();
+	
 		console.log(sh*2);
 		/********动画**********/
-		if(sh > (550 / 75 * wrem) && time01) { 
-			$(".p1-part01").show();
+		if(sh > (50 / 75 * wrem) && time01) { 
+			$(".move-tip").hide();
 			time01 = false;
 		}
-		if(sh > (3544 / 75 * wrem) && time02) { 
-			$(".p1-listen").show();
+		if(sh > (600 / 75 * wrem) && time02) { 
+			$('.content2').show()
 			time02 = false;
 		}
-		if(sh > (4649 / 75 * wrem) && time03) { 
-			$(".p1-kuang").show();
+		if(sh > (1280 / 75 * wrem) && time03) { 
+			$('.content3').show()
 			time03 = false;
 		}
-		if(sh > (5080 / 75 * wrem) && time04) { 
-			$(".p1-kaihei").show();
+		if(sh > (1900 / 75 * wrem) && time04) { 
+			$('.content4').show()
+			var timer = setTimeout(function(){
+				$('.pagefive-people').hide()
+				clearTimeout(timer)
+				timer = null
+			}, 3000)
 			time04 = false;
 			
 		}
-		if(sh > (5479 / 75 * wrem) && time05) { 
-			$(".p1-go1").show();
-			$(".p1-go2").show();
-			$(".p1-go3").show();
+		if(sh > (2646 / 75 * wrem) && time05) { 
+			$('.content5').show()
 			time05 = false;
 		}
-		if(sh > (7000 / 75 * wrem) && time06) {
-			$(".p1-kekeke").show();
-			mKeke.play();
+		if(sh > (3454 / 75 * wrem) && time06) {
+			$('.content6').show();
 			time06 = false;
 		}
 		
@@ -268,103 +255,11 @@ function portrait(){
 			time14 = false;
 		}
 		if(sh > (9150/ 75 * wrem) && time15) { 
-	        $(".p1-money01").show();
-	         $(".p1-money02").show();
+			$(".p1-money01").show();
+			$(".p1-money02").show();
 			time15 = false;
 		}
-		
-		//part2
-		if (sh > (15714 / 75 * wrem)&&show01) {//part2标题出来
-			$('.p2-title').show();
-			show01=false;
-		}
-		if (sh > (18900/ 75 * wrem)&&show02) {//part2开撕了出来
-			$('.p2-kaisi').show();
-			show02 = false;
-		}
-		if (sh > (19664 / 75 * wrem)&&show03) {//part2下一秒 闪电
-			$('.p2-nextM').show();
-			$('.p2-shandian').show();
-			$('.p2-nextM').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-				$('.p2-nextM').addClass('p2-nextM-shaking');
-			});
-			show03 = false;
-		}
-		if (sh > (27720 / 75 * wrem)&&show04) {//part2 回家 路线
-			$('.p2-huijia').show();
-			$('.p2-luxian').show();
-			
-			show04 = false;
-		}
-		if (sh > (26814 / 75 * wrem)&&show05) {//part2 搞事情
-			$('.p2-gaosq').show();
-			show05 = false;
-		}
-		if (sh > (17730 / 75 * wrem)&&show06) {//part2 伺机而动
-			$('.p2-si').show();
-			$('.p2-ji').show();
-			$('.p2-er').show();
-			$('.p2-dong').show();
-			show06 = false;
-		}
-		if (sh > (17088 / 75 * wrem)&&show07) {//part2 17:55
-			$('.p2-red-kuang01').show();
-			show07 = false;
-		}
-		if (sh > (22288 / 75 * wrem)&&show08) {//part2 17:59
-			$('.p2-red-kuang02').show();
-			
-			show08 = false;
-		}
-		if (sh > (26088 / 75 * wrem)&&show09) {//part2 00:53
-			$('.p2-red-kuang03').show();
-			show09 = false;
-		}
-		if (sh > (22960/ 75 * wrem)&&show10) {//part2 17:59	
-			
-			show10 = false;
-		}
-        
 
-		//part3
-		if(sh > (29193 / 75 * wrem) && three01) { //冒泡的试管
-			$(".p3-part3").show();
-			three01 = false;
-		}
-		if(sh > (29693 / 75 * wrem) && three02) { //冒泡的试管
-			$(".p3-kuang").show();
-			three02 = false;
-		}
-		if(sh > (34387 / 75 * wrem) && three03) { //冒泡的试管
-			$(".p3-nice").show();
-			three03 = false;
-		}
-		if(sh > (35037 / 75 * wrem) && three04) { //冒泡的试管
-			$(".p3-kuang2").show();
-			three04 = false;
-		}
-		if(sh > (38150 / 75 * wrem) && three05) { //冒泡的试管
-			$(".p3-if").show();
-			three05 = false;
-		}
-		if(sh > (38700 / 75 * wrem) && three06) { //冒泡的试管
-			$(".p3-slogan").show();
-			three06 = false;
-		}
-		if(sh > (31560 / 75 * wrem) && three07) { //冒泡的试管
-		
-			three07 = false;
-		}
-		if(sh > (35678 / 75 * wrem) && three08) { //冒泡的试管
-			$(".p3-jump1").show();
-			$(".p3-jump2").show();
-			
-			three08 = false;
-		}
-		if(sh > (38700 / 75 * wrem) && three09) { //冒泡的试管
-			m
-			three09 = false;
-		}
 	});
 	$(".p3-yuyue").click(function() {
 		$(this).hide();
@@ -379,31 +274,51 @@ function portrait(){
 	//part1
 	
 }
-
+var getPixelRatio = function(context) {
+	var backingStore = context.backingStorePixelRatio ||
+			context.webkitBackingStorePixelRatio ||
+			context.mozBackingStorePixelRatio ||
+			context.msBackingStorePixelRatio ||
+			context.oBackingStorePixelRatio ||
+			context.backingStorePixelRatio || 1;
+	return (window.devicePixelRatio || 1) / backingStore;
+};
 function drawImg (obj) {
 	var canvas = document.createElement('canvas')//画布
 	var ctx = canvas.getContext("2d");
-	canvas.width = 750;
-	canvas.height = 1450
-	ctx.clearRect(0,0,canvas.width,canvas.height);
-	ctx.fillStyle = '#000000';
-	ctx.fillRect(0,0,canvas.width, canvas.height);
-	var head = new Image()
-	head.crossOrigin = "*";
-	head.src = obj.head
-	head.onload = function() {
-		//画头像
-		ctx.drawImage(head, 0, 0, head.width, head.height, 37/750*canvas.width, 1203/1450*canvas.height, 100/750*canvas.width, 100/750*canvas.width);
-		var bg = new Image()
-		bg.crossOrigin = "*";
-		bg.src = obj.bg
-		bg.onload = function() {
-			 //画结果图
-			ctx.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, canvas.width, canvas.height);
+	var ratio = getPixelRatio(ctx);
+	canvas.width = 459*ratio;
+	canvas.height = 845*ratio;
+	// ctx.clearRect(0,0,canvas.width,canvas.height);
+	// ctx.fillStyle = '#000000';
+	// ctx.fillRect(0,0,canvas.width, canvas.height);
+	var bg = new Image()
+	bg.crossOrigin = "*";
+	bg.src = obj.bg	
+	bg.onload = function() {
+		console.log(bg.width, bg.height, canvas.width, canvas.height)
+		 //画结果图
+		ctx.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, canvas.width, canvas.height);
+		var head = new Image()
+		head.crossOrigin = "*";
+		head.src = obj.head
+		head.onload = function() {
+			//画头像
+			console.log(head.width, head.height)
+			ctx.save()
+			var r = 50*ratio
+			var d = 2*r
+			var cx = 37*ratio + r
+			var cy = 700*ratio + r
+			ctx.arc(cx, cy, r ,0, 2*Math.PI)
+			ctx.clip();
+			ctx.drawImage(head, 37*ratio, 700*ratio, d, d);
+			ctx.restore();
+			// ctx.drawImage(head, 0, 0, head.width, head.height, 37/750*canvas.width, 1203/1450*canvas.height, 100/750*canvas.width, 100/750*canvas.width);
 				//画用户昵称
-			ctx.font = '14px';
+			ctx.font = 14*ratio + 'px Arial';
 			ctx.fillStyle = '#ffffff';
-			ctx.fillText(obj.username, 37/750*canvas.width, 1272/1450*canvas.height)
+			ctx.fillText(obj.username, 150*ratio, 750*ratio)
 			//img 数据，可传给后台数据库
 			var imgData = canvas.toDataURL()
 			$('.pagelast-saveimg').attr('src', imgData)
@@ -443,15 +358,17 @@ var SaveInfo = {
 			$(this).addClass('changed');
 		})
 		$('.pagenine-huodong').click(function() {
-			$('.active-detail').show()
+			$('.content6-detail').show()
+			// $(".page-portrait").addClass('fixed').removeClass('scroll');
 		})
 		$('.pagenine-close').click(function(){
-			$('.active-detail').fadeOut(300)
+			$('.content6-detail').fadeOut(300)
+			// $(".page-portrait").removeClass('fixed').addClass('scroll');
 		})
 		$('.pageten-save').click(function(){
 			var obj = {
 				bg: 'img/pagelast-saveimg.png',
-				head: 'img/pagenine-close.png', // 用户头像，微信获取
+				head: 'img/pagesix-people1.png', // 用户头像，微信获取
 				username: '用户昵称' // 微信获取
 			}
 			drawImg(obj)
@@ -538,8 +455,6 @@ var SaveInfo = {
 	},
 	submit:function(){
 		$('#btn-userInfo').on('click',function(e){
-			$('.content6-success').show();
-			$('.content6').hide()
 			e.preventDefault();
 			$(".alert").click(function(){
 				$(".alertBox").fadeOut(300);
