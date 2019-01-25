@@ -68,7 +68,7 @@ function ImgLoadingByFile(imgArray,loadPageID,loadTxtID,showpageID,musicID){
 			timer = null
 		},long);
 	}
-	if(sessionStorage.getItem("pageloaded")){
+	if(sessionStorage.getItem("pageloaded02")){
 			var now = 0;
 			console.log(now);
 			var timer02 = setInterval(function(){
@@ -108,7 +108,7 @@ function ImgLoadingByFile(imgArray,loadPageID,loadTxtID,showpageID,musicID){
 					    }else{
 					        complete(200);
 					    }
-						sessionStorage.setItem("pageloaded", "true");	
+						sessionStorage.setItem("pageloaded02", "true");	
 					}
 				}
 			}
@@ -157,10 +157,70 @@ function portrait(){
 	})	
 	//初始化加载
 	if(firstInit) {
-		musicStar.play();
 		wrem = window.remCalc.rem;
 		var imgFile = [
-			"img/loading02.gif",
+//			"img/loading02.gif",
+			'img/ball_03.png',
+			'img/ball_06.png',
+			'img/ball_08.png',
+			'img/ball_09.png',
+			'img/ball_12.png',
+			'img/ball_17.png',
+			'img/bg.jpg',
+			'img/error.png',
+			'img/hand.png',
+			'img/jiantou-left.png',
+			'img/last-bg.png',
+			'img/logo.png',
+			'img/music-close.png',
+			'img/music-open.png',
+			'img/one-shou.png',
+			'img/pageeight-text1.png',
+			'img/pageeight-text2.png',
+			'img/pageeight-title.png',
+			'img/pagefive-people.png',
+			'img/pagefive-title.png',
+			'img/pagefour-kuang.png',
+			'img/pagefour-text1.png',
+			'img/pagefour-text2.png',
+			'img/pagefour-text3.png',
+			'img/pagefour-text4.png',
+			'img/pagefour-text5.png',
+			'img/pagefour-text6.png',
+			'img/pagefour-text7.png',
+			'img/pagefour-text8.png',
+			'img/pagefour-text9.png',
+			'img/pagefour-title.png',
+			'img/pagelast-saveimg.png',
+			'img/pagelast-title.png',
+			'img/pagenine-btn.png',
+			'img/pagenine-close.png',
+			'img/pagenine-huodong.png',
+			'img/pagenine-informbg.png',
+			'img/pagenine-jiantou.png',
+			'img/pagenine-long.png',
+			'img/pagenine-tishi.png',
+			'img/pagenine-title.png',
+			'img/pageonebg.jpg',
+			'img/pageone-opentext.png',
+			'img/pageone-xinfeng.png',
+			'img/pageone-zhang01.png',
+			'img/pageone-zhang02.png',
+			'img/pagesix-people1.png',
+			'img/pagesix-people2.png',
+			'img/pagesix-people3.png',
+			'img/pagesix-people4.png',
+			'img/pageten-save.png',
+			'img/pageten-share.png',
+			'img/pageten-title.png',
+			'img/pagethree-kuang.png',
+			'img/pagethree-text.png',
+			'img/pagetwo-hudie.gif',
+			'img/pagetwo-qun.png',
+			'img/pagetwo-text1.png',
+			'img/pagetwo-text2.png',
+			'img/pagetwo-time.png',
+			
 		];
 		ImgLoadingByFile(imgFile, 'loadingPage', 'loadTxt', 'pageOne',"musicStar");
 		//活动详情
@@ -323,6 +383,13 @@ var SaveInfo = {
 		$('.pagenine-close').click(function(){
 			$('.content6-detail').fadeOut(300)
 			// $(".page-portrait").removeClass('fixed').addClass('scroll');
+		})
+		$('.pageten-share').click(function(){
+			$('.content6-sharediv').show();
+			var timer = setTimeout(function(){
+				$('.content6-sharediv').hide();
+				clearTimeout(timer);
+			},3000);
 		})
 		$('.pageten-save').click(function(){
 			var obj = {

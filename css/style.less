@@ -254,7 +254,7 @@ body.fixed{
     left: 195/7.5vw;
     top: 287.5/7.5vw;
     opacity: 0;
-    animation: fadeIn 1s 0.1s linear forwards;
+    animation: fadeIn 0.1s 0.5s linear forwards;
   }
   .zhang02{
     width: 207/7.5vw;
@@ -263,14 +263,14 @@ body.fixed{
     left: 187.5/7.5vw;
     top: 790/7.5vw;
     opacity: 0;
-    animation: fadeIn 1s 0.15s linear forwards;
+    animation: fadeIn 0.1s 0.9s linear forwards;
   }
   .goContent{
     width: 400/7.5vw;
     height: 40/7.5vw;
     position: absolute;
     left: 175/7.5vw;
-    bottom: 200/7.5vw;
+    bottom: 100/7.5vw;
     text-align: center;
     color: #fff;
     animation: fadeToContent 2s linear infinite;
@@ -314,6 +314,7 @@ body.fixed{
     position: absolute;
     left: 1140/7.5vw;
     top: 564/7.5vw;
+    animation: ballmove 5s linear infinite;
   }
   .ball_06{
     width: 178/7.5vw;
@@ -321,6 +322,7 @@ body.fixed{
     position: absolute;
     left: 2156/7.5vw;
     top: 435/7.5vw;
+    animation: ballmove 5s linear infinite;
   }
   .ball_03{
     width: 1025/7.5vw;
@@ -328,6 +330,7 @@ body.fixed{
     position: absolute;
     left: 2664/7.5vw;;
     top: 1043/7.5vw;
+    animation: ballmove 5s linear infinite;
   }
   .ball_17{
     width: 62/7.5vw;
@@ -335,6 +338,7 @@ body.fixed{
     position: absolute;
     left: 3696/7.5vw;
     top: 894/7.5vw;
+    animation: ballmove 5s linear infinite;
   }
   .ball_08{
     width: 225/7.5vw;
@@ -342,6 +346,7 @@ body.fixed{
     position: absolute;
     left: 4066/7.5vw;;
     top: 105/7.5vw;
+    animation: ballmove 5s linear infinite;
   }
   .ball_12{
     width: 134/7.5vw;
@@ -349,6 +354,7 @@ body.fixed{
     position: absolute;
     left: 4400/7.5vw;
     top: 583/7.5vw;
+    animation: ballmove 5s linear infinite;
   }
   .move-tip{ 
     width: 200/7.5vw;
@@ -433,6 +439,9 @@ body.fixed{
     position: absolute;
     left: 129/7.5vw;
     top: 828/7.5vw;
+    opacity: 0;
+    -webkit-animation:fadeIn 0.6s ease 0.5s forwards;
+    animation:fadeIn 0.6s ease 0.5s forwards;
   }
   .pagetwo-text2{
     width: 368/7.5vw;
@@ -440,7 +449,10 @@ body.fixed{
     position: absolute;
     left: 191/7.5vw;
     top: 1099/7.5vw;
+    opacity: 0;
+     animation: fadeIn 0.8s ease 1s forwards;
   }
+
   .pagetwo-logo{
     width: 185/7.5vw;
     height: 46/7.5vw;
@@ -815,7 +827,53 @@ body.fixed{
     box-shadow: 3px 0px 5px rgba(1, 1, 1, 0.4);
   }
 }
+.content6-sharediv{
+    display: none;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,0.6);
+      .pagelast-shareimg{
+          width: 324/7.5vw;
+          height: 133/7.5vw;
+          position: absolute;
+          right:62/7.5vw ;
+          top:42/7.5vw;
+      }
+}
 
+
+
+@-webkit-keyframes ballmove{
+            0%{
+                -webkit-transform: translate3d(0, -2px, 0);
+                transform: translate3d(0, -2px, 0);
+                opacity: 0.6;
+            }
+            25%{
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                 opacity: 0.8;
+            }
+            50%{
+                 -webkit-transform: translate3d(0, 1px, 0);
+                transform: translate3d(0, 3px, 0);
+                 opacity: 1;
+            }
+            75%{
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                 opacity: 0.8;
+            }
+            100% {
+                -webkit-transform: translate3d(0, -2px, 0);
+                transform: translate3d(0, -2px, 0);
+                 opacity: 0.6;
+            }
+            
+          }
 
 /***********************表单**********************/
 ul{
