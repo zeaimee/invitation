@@ -182,92 +182,51 @@ function portrait(){
 		time14= true,
 		time15 =true;
 
-	$('#page-portrait').on('scroll',function() {
-		/* ...do something... */
-		var sh = $('#page-portrait').scrollLeft();
-	
-		console.log(sh*2);
-		/********动画**********/
-		if(sh > (50 / 75 * wrem) && time01) { 
-			$(".move-tip").hide();
-			time01 = false;
-		}
-		if(sh > (600 / 75 * wrem) && time02) { 
-			$('.content2').show()
-			time02 = false;
-		}
-		if(sh > (1280 / 75 * wrem) && time03) { 
-			$('.content3').show()
-			time03 = false;
-		}
-		if(sh > (1900 / 75 * wrem) && time04) { 
-			$('.content4').show()
-			var timer = setTimeout(function(){
-				$('.pagefive-people').hide()
-				clearTimeout(timer)
-				timer = null
-			}, 3000)
-			time04 = false;
-			
-		}
-		if(sh > (2646 / 75 * wrem) && time05) { 
-			$('.content5').show()
-			time05 = false;
-		}
-		if(sh > (3454 / 75 * wrem) && time06) {
-			$('.content6').show();
-			time06 = false;
-		}
+		$('#page-portrait').on('scroll',function() {
+			/* ...do something... */
+			var sh = $('#page-portrait').scrollLeft();
 		
-		if(sh > (8950 / 75 * wrem) && time07) { 
-			$(".p1-kuang2").show();
-			time07 = false;
-		}
-		if(sh > (11300 / 75 * wrem) && time08) { 
-			$(".p1-kuang3").show();
-			time08 = false;
-		}
-		if(sh > (11700 / 75 * wrem) && time09) { 
-			$(".p1-that").show();
-			time09 = false;
-		}
-		if(sh > (14200 / 75 * wrem) && time10) { 
-			$(".p1-fuck").show();
-			time10 = false;
-		}
-		if(sh > (14362 / 75 * wrem) && time11) {
-			$(".p1-banma").show();
-			time11 = false;
-		}
-		if(sh > (14896 / 75 * wrem) && time12) { 
-			$(".p1-haode").show();
-			$(".p1-haode2").show();
-			$('.p1-music').show();
-		
-			time12 = false;
-		}
-		if(sh > (8406/ 75 * wrem) && time13) {
-			
-			time13 = false;
-		}
-		if(sh > (1000/ 75 * wrem) && time14) { 
-	        
-			time14 = false;
-		}
-		if(sh > (9150/ 75 * wrem) && time15) { 
-			$(".p1-money01").show();
-			$(".p1-money02").show();
-			time15 = false;
-		}
+			// console.log(sh*2);
+			/********动画**********/
+			if(sh > (50 / 75 * wrem) && time01) { 
+				$(".move-tip").hide();
+				time01 = false;
+			}
+			if(sh > (600 / 75 * wrem) && time02) { 
+				$('.content2').show()
+				time02 = false;
+			}
+			if(sh > (1280 / 75 * wrem) && time03) { 
+				$('.content3').show()
+				time03 = false;
+			}
+			if(sh > (1900 / 75 * wrem) && time04) { 
+				$('.content4').show()
+				var timer = setTimeout(function(){
+					$('.pagefive-people').hide()
+					clearTimeout(timer)
+					timer = null
+				}, 3000)
+				time04 = false;
+				
+			}
+			if(sh > (2646 / 75 * wrem) && time05) { 
+				$('.content5').show()
+				time05 = false;
+			}
+			if(sh > (3454 / 75 * wrem) && time06) {
+				$('.content6').show();
+				time06 = false;
+			}
+		});
+		$('.pagenine-long-box').on('scroll',function() {
+			var sh = $('.pagenine-long-box').scrollTop();
+			if(sh > (50 / 75 * wrem) && time07) { 
+				$(".pagenine-jiantou").hide();
+				time07 = false;
+			}
+		})
 
-	});
-	$(".p3-yuyue").click(function() {
-		$(this).hide();
-		$(".p3-shijia").fadeIn(300);
-		$(".userEnd").fadeIn(300);
-	})
-		
-		
 		firstInit = false;
 	}
 
@@ -287,8 +246,8 @@ function drawImg (obj) {
 	var canvas = document.createElement('canvas')//画布
 	var ctx = canvas.getContext("2d");
 	var ratio = getPixelRatio(ctx);
-	canvas.width = 459*ratio;
-	canvas.height = 845*ratio;
+	canvas.width = 419*ratio;
+	canvas.height = 813*ratio;
 	// ctx.clearRect(0,0,canvas.width,canvas.height);
 	// ctx.fillStyle = '#000000';
 	// ctx.fillRect(0,0,canvas.width, canvas.height);
@@ -306,7 +265,7 @@ function drawImg (obj) {
 			//画头像
 			console.log(head.width, head.height)
 			ctx.save()
-			var r = 50*ratio
+			var r = 40*ratio
 			var d = 2*r
 			var cx = 37*ratio + r
 			var cy = 700*ratio + r
@@ -318,7 +277,7 @@ function drawImg (obj) {
 				//画用户昵称
 			ctx.font = 14*ratio + 'px Arial';
 			ctx.fillStyle = '#ffffff';
-			ctx.fillText(obj.username, 150*ratio, 750*ratio)
+			ctx.fillText(obj.username, 130*ratio, 750*ratio)
 			//img 数据，可传给后台数据库
 			var imgData = canvas.toDataURL()
 			$('.pagelast-saveimg').attr('src', imgData)
