@@ -1,172 +1,144 @@
-
-
-/**计算rem**/
+/******rem *******/
 (function(win){
-	var remCalc = {};
-	var docEl = win.document.documentElement,
-		tid,
-		hasRem = true;
-	hasZoom = true;
-	designWidth = 750;
-	function refresh(){
-		var width = docEl.getBoundingClientRect().width;
-		if(hasRem){
-			var rem = width/10;
-			docEl.style.fontSize = rem + "px";
-			remCalc.rem = rem;
-			var actualSize = parseFloat(window.getComputedStyle(document.documentElement)["font-size"]);
-			if(actualSize!== rem && actualSize>0 && Math.abs(actualSize-rem)>1){
-				var remScaled = rem*rem/actualSize;
-				docEl.style.fontSize = remScaled + "px";
-			}
-		}
-		if(hasZoom){
-			var style = document.getElementById('y_style');
-			if(!style){
-				style = document.createElement('style');
-				style.id = 'y_style';
-			}
-			style.innerHTML = '._z{zoom:'+ width/designWidth + '}';
-			document.getElementsByTagName('head')[0].appendChild(style);
-		}
-	}
-	function dbcRefresh(){
-		clearTimeout(tid);
-		tid = setTimeout(refresh,100);
-	}
-	win.addEventListener("resize",function(){
-		dbcRefresh()
-	},false);
-	win.addEventListener("pageshow",function(e){
-		if(e.persisted){
-			dbcRefresh()
-		}
-	},false);
-	refresh();
-	if(hasRem){
-		remCalc.refresh = refresh;
-		remCalc.rem2px = function(d){
-			var val = parseFloat(d)/this.rem;
-			if(typeof d==="string" && d.match(/px$/)){
-				val+="rem";
-			}
-			return val
-		};
-		win.remCalc = remCalc;
-	}
+    var remCalc = {};
+    var docEl = win.document.documentElement,
+        tid,
+        hasRem = true;
+    hasZoom = true;
+    designWidth = 750;
+    function refresh(){
+        var width = docEl.getBoundingClientRect().width;
+        if(hasRem){
+            var rem = width/10;
+            docEl.style.fontSize = rem + "px";
+            remCalc.rem = rem;
+            var actualSize = parseFloat(window.getComputedStyle(document.documentElement)["font-size"]);
+            if(actualSize!== rem && actualSize>0 && Math.abs(actualSize-rem)>1){
+                var remScaled = rem*rem/actualSize;
+                docEl.style.fontSize = remScaled + "px";
+            }
+        }
+        if(hasZoom){
+            var style = document.getElementById('y_style');
+            if(!style){
+                style = document.createElement('style');
+                style.id = 'y_style';
+            }
+            style.innerHTML = '._z{zoom:'+ width/designWidth + '}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+        }
+    }
+    function dbcRefresh(){
+        clearTimeout(tid);
+        tid = setTimeout(refresh,100);
+    }
+    win.addEventListener("resize",function(){
+        dbcRefresh()
+    },false);
+    win.addEventListener("pageshow",function(e){
+        if(e.persisted){
+            dbcRefresh()
+        }
+    },false);
+    refresh();
+    if(hasRem){
+        remCalc.refresh = refresh;
+        remCalc.rem2px = function(d){
+            var val = parseFloat(d)/this.rem;
+            if(typeof d==="string" && d.match(/px$/)){
+                val+="rem";
+            }
+            return val
+        };
+        win.remCalc = remCalc;
+    }
 })(window);
-		
 
-function ImgLoadingByFile(imgArray,loadPageID,loadTxtID,showpageID,musicID){
-	function complete(long){
-		var timer = setTimeout(function(){
-			$('#'+loadPageID).hide();
-			$('#'+showpageID).show();
-			$('.btn-music').show();
-			musicStar.play();
-			clearTimeout(timer);
-			timer = null
-		},long);
-	}
-	if(sessionStorage.getItem("pageloaded02")){
-			var now = 0;
-			console.log(now);
-			var timer02 = setInterval(function(){
-			    if(now<=100){
-			        $('#'+ loadTxtID +' span').html(now + '%');
-			    }else{
-							clearInterval(timer02);
-							timer02=null
-							return
-			    }
-			    now +=8
-			    console.log(now);
-			},10);
-		complete(2500);
-		return 
-	}else{
-		var imgLoad = 0;
-		var btime = new Date();
-		if(imgArray.length>0){
-			var imgTotal = imgArray.length;
-			var percent = 0;
-			var img = [];
-			for(var i = 0;i<imgArray.length;i++){
-				img[i] = new Image();
-				img[i].src=imgArray[i];
-				img[i].onload = function(){
-					imgLoad++;
-					percent = parseInt(imgLoad/imgTotal*100);
-						$('#'+loadTxtID +' span').html(percent + '%');
-						//console.log(percent);
-						
-					if(percent>=100){
-					    var etime = new Date();
-					    console.log(etime-btime);
-					    if(etime-1000>btime){
-					        complete(100);
-					    }else{
-					        complete(200);
-					    }
-						sessionStorage.setItem("pageloaded02", "true");	
-					}
-				}
-			}
-		}
-	}
+
+function ImgLoadingByFile(imgArray,loadPageID,loadTxtID,showpageID){
+    function complete(long){
+        var timer = setTimeout(function(){
+            $('#'+loadPageID).hide();
+            $('#'+showpageID).show();
+            $('.btn-music').show();
+            musicStar.play();
+            clearTimeout(timer);
+        },long);
+    }
+    if(sessionStorage.getItem("pageloaded")){
+        $('#'+loadTxtID).html('100%');
+        complete(1300);
+    }else{
+        var imgLoad = 0;
+        var btime = new Date();
+        if(imgArray.length>0){
+            var imgTotal = imgArray.length;
+            var percent = 0;
+            var img = [];
+            for(var i = 0;i<imgArray.length;i++){
+                img[i] = new Image();
+                img[i].src=imgArray[i];
+                img[i].onload = function(){
+                    imgLoad++;
+                    percent = parseInt(imgLoad/imgTotal*100);
+                    $('#'+loadTxtID).html(percent+'%');
+                    console.log(percent);
+
+                    if(percent>=100){
+                        var etime = new Date();
+                        console.log(etime-btime);
+                        if(etime-1000>btime){
+                            complete(100);
+                        }else{
+                            complete(200);
+                        }
+                        sessionStorage.setItem("pageloaded", "true");
+
+                    }
+                }
+            }
+        }
+    }
 }
 
 //横屏
 function landscape(){
-	var w = window.Utils.windowW();
-	var h = window.Utils.windowH();
-	// $("body").css({"width":w,"height":h,"overflow-x":'hidden',"-webkit-overflow-x":"hidden"});
-	// $('#page-landscape').css({"width":w,"height":h}).show();
-	$('#page-landscape').show()
-	//$('#page-portrait').css({"width":w,"height":h});
+    //var w = window.innerWidth;
+    //var h = window.innerHeight;
+    var w = window.Utils.windowW();
+    var h = window.Utils.windowH();
+    $("body").css({"width":w,"height":h});
+    $('#page-landscape').css({"width":w,"height":h}).show();
+    $('#page-portrait').css({"width":w,"height":h});
+    //$('#page-landscape').show();
+
 }
-var firstInit = true,wrem = 0;
+var firstInit = true;
 //竖屏
 function portrait(){
-	var w = window.Utils.windowW();
-	var h = window.Utils.windowH();
-	// $("body").css({"width":'600vw',"height":'100vh',"overflow-x":'scroll',"-webkit-overflow-x":"scroll"});
-	$('#page-portrait').show();
-	$('#page-landscape').hide();
-	$('.btn-music').click(function(){
-		if(musicStar.paused){
-			musicStar.play();
-			$('.open').show();
-			$('.clock').hide();
-		}else{
-			musicStar.pause();
-			$('.open').hide();
-			$('.clock').show();
-		}
-	});
-	$('#goContent').click(function(){
-		$('.pageone').hide()
-		$('.pagebox').show()
-		$('.content1').show()
-		if(musicStar.paused){
-			musicStar.play();
-			$('.btn-music').show()
-			$('.open').show();
-			$('.clock').hide();
-		}
-	})	
-	//初始化加载
-	if(firstInit) {
-		wrem = window.remCalc.rem;
-		var imgFile = [
-//			"img/loading02.gif",
+
+    var w = window.Utils.windowW();
+    var h = window.Utils.windowH();
+    //初始化加载
+    if(firstInit){
+        $("body").css({"width":w,"height":h});
+        $('#page-portrait').css({"width":w,'height':h}).show();
+        $('#page-portrait').show();
+        $('#page-landscape').hide();
+        var imgFile = [
+			'img/images/bg_01.jpg',
+			'img/images/bg_02.jpg',
+			'img/images/bg_03.jpg',
+			'img/images/bg_04.jpg',
+			'img/images/bg_05.jpg',
+			'img/images/bg_06.jpg',
 			'img/ball_03.png',
 			'img/ball_06.png',
 			'img/ball_08.png',
 			'img/ball_09.png',
 			'img/ball_12.png',
 			'img/ball_17.png',
-			'img/bg.jpg',
+			// 'img/bg.jpg',
 			'img/error.png',
 			'img/hand.png',
 			'img/jiantou-left.png',
@@ -219,80 +191,46 @@ function portrait(){
 			'img/pagetwo-qun.png',
 			'img/pagetwo-text1.png',
 			'img/pagetwo-text2.png',
-			'img/pagetwo-time.png',
-			
-		];
-		ImgLoadingByFile(imgFile, 'loadingPage', 'loadTxt', 'pageOne',"musicStar");
-		//活动详情
-		SaveInfo.init();
-		//内容
-		var time01 = true,
-		time02 = true,
-		time03 = true,
-		time04 = true,
-		time05 = true,
-		time06 = true,
-		time07 = true,
-		time08 = true,
-		time09 = true,
-		time10 = true,
-		time11 = true,
-		time12 = true,
-		time13= true,
-		time14= true,
-		time15 =true;
+			'img/pagetwo-time.png',		
+        ];
+		ImgLoadingByFile(imgFile,'loadingPage','loadTxt','bb','pageContainer');
+		SaveInfo.init()
+        firstInit = false;
+         
+    }else {
+        //$('#page-portrait').show();
+        //$('#page-landscape').hide();
+        $("body").css({"width":w,"height":h});
+        $('#page-portrait').css({"width":w,'height':h}).show();
+        $('#page-landscape').hide();
+    }
+  	$('.btn-music').click(function(){
+    	
+        if(musicStar.paused){
+            musicStar.play();
+            $('.open').show();
+            $('.clock').hide();
+        }else{
+            musicStar.pause();
+            $('.open').hide();
+            $('.clock').show();
+        }
+    });
+    
+    $('input').focus(function(){
 
-		$('#page-portrait').on('scroll',function() {
-			/* ...do something... */
-			var sh = $('#page-portrait').scrollLeft();
-		
-			// console.log(sh*2);
-			/********动画**********/
-			if(sh > (50 / 75 * wrem) && time01) { 
-				$(".move-tip").hide();
-				time01 = false;
-			}
-			if(sh > (600 / 75 * wrem) && time02) { 
-				$('.content2').show()
-				time02 = false;
-			}
-			if(sh > (1280 / 75 * wrem) && time03) { 
-				$('.content3').show()
-				time03 = false;
-			}
-			if(sh > (1900 / 75 * wrem) && time04) { 
-				$('.content4').show()
-				var timer = setTimeout(function(){
-					$('.pagefive-people').hide()
-					clearTimeout(timer)
-					timer = null
-				}, 3000)
-				time04 = false;
-				
-			}
-			if(sh > (2646 / 75 * wrem) && time05) { 
-				$('.content5').show()
-				time05 = false;
-			}
-			if(sh > (3454 / 75 * wrem) && time06) {
-				$('.content6').show();
-				time06 = false;
-			}
-		});
-		$('.pagenine-long-box').on('scroll',function() {
-			var sh = $('.pagenine-long-box').scrollTop();
-			if(sh > (50 / 75 * wrem) && time07) { 
-				$(".pagenine-jiantou").hide();
-				time07 = false;
-			}
-		})
+    if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
 
-		firstInit = false;
-	}
+    }else{
+        window.removeEventListener("resize",onResize,false);
+    }
 
-	//part1
-	
+});
+
 }
+
+
+
 var getPixelRatio = function(context) {
 	var backingStore = context.backingStorePixelRatio ||
 			context.webkitBackingStorePixelRatio ||
@@ -347,7 +285,6 @@ function drawImg (obj) {
 	}   
 }
 
-
 var SaveInfo = {
 	companyname:null,//公司名称
 	job:"未知", //参会人员职务
@@ -377,11 +314,12 @@ var SaveInfo = {
 			$(this).addClass('changed');
 		})
 		$('.pagenine-huodong').click(function() {
-			$('.content6-detail').show()
+			$('.content6-detail').show();
+			// alert('666');
 			// $(".page-portrait").addClass('fixed').removeClass('scroll');
 		})
 		$('.pagenine-close').click(function(){
-			$('.content6-detail').fadeOut(300)
+			$('.content6-detail').fadeOut(300);
 			// $(".page-portrait").removeClass('fixed').addClass('scroll');
 		})
 		$('.pageten-share').click(function(){
@@ -546,126 +484,133 @@ var SaveInfo = {
 	}
 };
 
+
+
+
+
+
+
+
+
+
+
 (function() {
-	"use strict";
+    "use strict";
 
-	function Utils() {
-	}
+    function Utils() {
+    }
 
-	Utils.isWeiXin = function(){
-		return navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/);
-	};
-	Utils.isQQ = function(){
-		return navigator.userAgent.ua.match(/QQ\/([\d\.]+)/);
-	};
-	Utils.isQZone = function(){
-		return navigator.userAgent.ua.indexOf("Qzone/") !== -1;
-	};
+    Utils.isWeiXin = function(){
+        return navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/);
+    };
+    Utils.isQQ = function(){
+        return navigator.userAgent.ua.match(/QQ\/([\d\.]+)/);
+    };
+    Utils.isQZone = function(){
+        return navigator.userAgent.ua.indexOf("Qzone/") !== -1;
+    };
 
-	Utils.isIos = function() {
-		return !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-	};
-	Utils.isIPhone = function() {
-		return navigator.userAgent.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1;
-	};
-	Utils.isIpad = function() {
-		return navigator.userAgent.indexOf('iPad') > -1;
-	};
-	Utils.isAndroid = function() {
-		var u = navigator.userAgent;
-		return navigator.userAgent.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
-	};
-	Utils.isMobile = function() {
-		// var u = navigator.userAgent;
-		return navigator.userAgent.match(/(iPhone|iPod|Android|ios|SymbianOS)/i) != null;
-	};
+    Utils.isIos = function() {
+        return !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+    };
+    Utils.isIPhone = function() {
+        return navigator.userAgent.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1;
+    };
+    Utils.isIpad = function() {
+        return navigator.userAgent.indexOf('iPad') > -1;
+    };
+    Utils.isAndroid = function() {
+        var u = navigator.userAgent;
+        return navigator.userAgent.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+    };
+    Utils.isMobile = function() {
+        // var u = navigator.userAgent;
+        return navigator.userAgent.match(/(iPhone|iPod|Android|ios|SymbianOS)/i) != null;
+    };
 
-	// ## 屏幕方向
-	Utils.isPortrait = function() {
-		if (!Utils.isMobile()) {
-			//alert(111);
-			return true;
+    // ## 屏幕方向
+    Utils.isPortrait = function() {
+        if (!Utils.isMobile()) {
+            //alert(111);
+            return true;
 
-		}
-		// 安卓版 微信里面 只用判断 width 和 height
-		if (Utils.isAndroid() && Utils.isWeiXin()) {
-			if (Utils.windowW() < Utils.windowH()) {
-				//alert(22);
-				return true;
+        }
+        // 安卓版 微信里面 只用判断 width 和 height
+        if (Utils.isAndroid() && Utils.isWeiXin()) {
+            if (Utils.windowW() < Utils.windowH()) {
+                //alert(22);
+                return true;
 
-			} else {
-				//alert(331);
-				return false;
+            } else {
+                //alert(331);
+                return false;
 
-			}
-		}
-		var orientation = window['orientation'];
-		if (orientation||orientation==0) {
-			if (orientation == 90 || orientation == -90) {
-				//alert(4442);
-				return false;
+            }
+        }
+        var orientation = window['orientation'];
+        if (orientation||orientation==0) {
+            if (orientation == 90 || orientation == -90) {
+                //alert(4442);
+                return false;
 
-			}else{
-				//alert(555111);
-				return true;
+            }else{
+                //alert(555111);
+                return true;
 
-			}
-		} else {
-			if (Utils.windowW() < Utils.windowH()) {
-				//alert(666111);
-				return true;
+            }
+        } else {
+            if (Utils.windowW() < Utils.windowH()) {
+                //alert(666111);
+                return true;
 
-			} else {
-				//alert(777111);
-				return false;
+            } else {
+                //alert(777111);
+                return false;
 
-			}
-		}
-	};
-	// ## jquery 获取 window 的宽度
-	Utils.windowW = function() {
-		// var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-		return $(window).width();
-	};
-	// ## jquery 获取 window 的高度
-	Utils.windowH = function() {
-		return $(window).height();
-	};
-	window.Utils = Utils;
+            }
+        }
+    };
+    // ## jquery 获取 window 的宽度
+    Utils.windowW = function() {
+        // var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        return $(window).width();
+    };
+    // ## jquery 获取 window 的高度
+    Utils.windowH = function() {
+        return $(window).height();
+    };
+    window.Utils = Utils;
 }());
 $(function(){
-	onResize();
-	if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
-		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", onResize, false);
-	}else{
-		window.addEventListener( "resize", onResize, false);
-	}
+    onResize();
+    if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", onResize, false);
+    }else{
+        window.addEventListener( "resize", onResize, false);
+    }
 });
 
 function  onResize() {
 
-	if(Utils.isPortrait()){
-		if(!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)){
+    if(Utils.isPortrait()){
+        if(!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)){
 
-			var timer = setTimeout(function(){
-				portrait();
+            var timer = setTimeout(function(){
+                portrait();
 
-				clearTimeout(timer);
-			},100);
-		}else{
-			portrait();
-		}
-	} else {
-		if(!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)){
-			var timer = setTimeout(function(){
-				landscape();
-				clearTimeout(timer);
-			},100);
-		}else{
-			landscape();
-		}
-	}
+                clearTimeout(timer);
+            },100);
+        }else{
+            portrait();
+        }
+    } else {
+        if(!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)){
+            var timer = setTimeout(function(){
+                landscape();
+                clearTimeout(timer);
+            },100);
+        }else{
+            landscape();
+        }
+    }
 }
-
-
-

@@ -15,28 +15,28 @@
  * @ wx_nonceStr     必填，生成签名的随机串
  * @ wx_signature    必填，签名
  */
-function wxShare(obj){
+(function ($){
 	var url = "https://h5php.xingyuanauto.com/weixin_serve/jssdk/wx_token.php";//微信公众号验证接口
 	$.post(url,function(msg){
 		if(msg.start == 0){
           return alert(msg.message);
         }
-        var title = typeof(obj.title) == "undefined" ? obj.title : '分享标题';//项目宽
-        var desc = typeof(obj.desc) == "undefined" ? obj.desc : '分享描述';//项目宽
-        var imgPath = typeof(obj.imgPath) == "undefined" ? obj.imgPath : 'img/share.jpg';//项目宽
 			function getUrl(){
 					var url = window.location.href;
 					
 					var an = url.split('?')[0];
 					var locationurl = an.split('index.html')[0];
-					var imgurl = locationurl+imgPath;
+				  
+					//console.log(locationurl);
+					var imgurl = locationurl+'img/share.jpg';
 					return imgurl;
 			} 
 			            			
-			var title =title; // 分享标题
+			var title ='购EC200享万元钜惠 点击领取'; // 分享标题
             var link = window.location.href;
-            var desc = desc; // 分享描述
+            var desc = '比想象中更强大-占号神器！'; // 分享描述
             var imgUrl = getUrl();
+			console.log(imgUrl);
 		    var wx_appId = msg.appId;
 			var wx_timestamp = msg.timestamp;
 			var wx_nonceStr = msg.nonceStr;
@@ -148,4 +148,4 @@ function wxShare(obj){
 
 	},'json')
 
-}
+})(jQuery);
